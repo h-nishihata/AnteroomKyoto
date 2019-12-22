@@ -6,9 +6,9 @@ namespace UniSpeech.Sample
 {
     public class UniSpeechSampleUI : MonoBehaviour
     {
-        [SerializeField] private Text text;
-        [SerializeField] private Button button;
-        [SerializeField] private Text buttonText;
+        public Text text;
+        public Button button;
+        public Text buttonText;
 
         public Action onClick = () => { };
 
@@ -22,6 +22,9 @@ namespace UniSpeech.Sample
             this.text.text = text;
         }
 
+        /// <summary>
+        /// 状態を表示する.
+        /// </summary>
         public void UpdateButton(string text, bool interactive)
         {
             buttonText.text = text;
