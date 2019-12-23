@@ -69,11 +69,11 @@ public class SpeechRecognizer : NSObject {
         refreshTask()
 
         let audioSession = AVAudioSession.sharedInstance()
-        // [IMPORTANT]
         // https://stackoverflow.com/questions/40639660/swift-3-using-speech-recognition-and-avfoundation-together        
         // try audioSession.setCategory(AVAudioSessionCategoryRecord)
         try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-        try audioSession.setMode(AVAudioSessionModeMeasurement)
+        // https://stackoverflow.com/questions/45371931/swift-iphones-volume-is-low-when-trying-to-change-speech-to-iphones-voice-in
+        // try audioSession.setMode(AVAudioSessionModeMeasurement)
         try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
         
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
