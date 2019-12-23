@@ -657,6 +657,7 @@ MonoBehaviour:
   ui: {fileID: 1492859214}
   timeSinceLastInput: 0
   hasDetectedUser: 0
+  debugText: {fileID: 1967370484}
 --- !u!4 &734083787
 Transform:
   m_ObjectHideFlags: 0
