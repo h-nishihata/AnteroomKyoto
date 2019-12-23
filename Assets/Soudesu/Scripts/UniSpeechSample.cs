@@ -2,7 +2,6 @@
 // https://github.com/noir-neo/UniSpeech
 
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UniSpeech.Sample
 {
@@ -14,7 +13,6 @@ namespace UniSpeech.Sample
         private bool hasDetectedUser;
         private float timeSinceLastInput;
         public float inputTimeOut = 1f; // ユーザの音声入力が途絶えてから「そうです」を再生するまでの時間.
-        public Text soudesuText;
 
 
         void Start()
@@ -38,7 +36,6 @@ namespace UniSpeech.Sample
             {
                 // timeSinceLastInputが一定時間を過ぎると「そうです」が再生される.
                 audioManager.Play(Random.Range(0, 0));
-                soudesuText.gameObject.SetActive(true);
                 hasDetectedUser = false;
             }
         }
@@ -105,7 +102,6 @@ namespace UniSpeech.Sample
             {
                 ui.UpdateButton("Stopping", false);
             }
-            soudesuText.gameObject.SetActive(false);
         }
     }
 }

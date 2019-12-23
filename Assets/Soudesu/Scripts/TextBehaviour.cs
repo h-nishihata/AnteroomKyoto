@@ -3,7 +3,7 @@
 public class TextBehaviour : MonoBehaviour
 {
     private float elapsedTime;
-    private float displayTimeOut = 1f;
+    public float displayTimeOut = 1f;
 
     void OnEnable()
     {
