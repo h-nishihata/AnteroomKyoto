@@ -69,7 +69,9 @@ public class SpeechRecognizer : NSObject {
         refreshTask()
 
         let audioSession = AVAudioSession.sharedInstance()
-//        try audioSession.setCategory(AVAudioSessionCategoryRecord)
+        // [IMPORTANT]
+        // https://stackoverflow.com/questions/40639660/swift-3-using-speech-recognition-and-avfoundation-together        
+        // try audioSession.setCategory(AVAudioSessionCategoryRecord)
         try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
         try audioSession.setMode(AVAudioSessionModeMeasurement)
         try audioSession.setActive(true, with: .notifyOthersOnDeactivation)

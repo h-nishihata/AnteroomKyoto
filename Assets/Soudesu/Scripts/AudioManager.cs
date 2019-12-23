@@ -11,6 +11,5 @@ public class AudioManager : MonoBehaviour
     {
         source.clip = clips[numClip];
         source.Play();
-        Debug.Log("そうです");
     }
 }

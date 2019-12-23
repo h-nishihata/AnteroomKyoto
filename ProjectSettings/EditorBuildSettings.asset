@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Anteroom/AnteroomKyoto.unity
+    path: Assets/Soudesu/Scenes/Soudesu.unity
     guid: 6ebfa25eb0c5b4e819af3fb7beb573d0
   m_configObjects: {}

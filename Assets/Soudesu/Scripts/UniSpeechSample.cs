@@ -1,4 +1,5 @@
 ﻿// https://qiita.com/noir_neo/items/e51f2b503883d9b26c07
+// https://github.com/noir-neo/UniSpeech
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,10 +10,12 @@ namespace UniSpeech.Sample
     {
         public UniSpeechSampleUI ui;
         private AudioManager audioManager;
-        public float timeSinceLastInput;
-        private float inputTimeOut = 3f;
-        public bool hasDetectedUser;
-        public Text debugText;
+
+        private bool hasDetectedUser;
+        private float timeSinceLastInput;
+        public float inputTimeOut = 1f; // ユーザの音声入力が途絶えてから「そうです」を再生するまでの時間.
+        public Text soudesuText;
+
 
         void Start()
         {
@@ -33,10 +36,10 @@ namespace UniSpeech.Sample
             }
             else
             {
+                // timeSinceLastInputが一定時間を過ぎると「そうです」が再生される.
                 audioManager.Play(Random.Range(0, 0));
-                debugText.gameObject.SetActive(true);
+                soudesuText.gameObject.SetActive(true);
                 hasDetectedUser = false;
-                Debug.Log("Succeed !");
             }
         }
 
@@ -46,10 +49,8 @@ namespace UniSpeech.Sample
         public void OnRecognized(string transcription)
         {
             // transcriptionにはStartボタンを押してからの累計のメッセージが入る.
-            Debug.Log("OnRecognized: " + transcription);
+            // Debug.Log("OnRecognized: " + transcription);
 
-            // Update()でカウンターを持っておき，このメソッドが呼ばれるとリセットされるようにする.
-            // カウンターが一定時間を過ぎると「そうです」が再生されるようにする.
             hasDetectedUser = true;
             timeSinceLastInput = 0;
             ui.UpdateText(transcription);
@@ -104,7 +105,7 @@ namespace UniSpeech.Sample
             {
                 ui.UpdateButton("Stopping", false);
             }
-            debugText.gameObject.SetActive(false);
+            soudesuText.gameObject.SetActive(false);
         }
     }
 }
