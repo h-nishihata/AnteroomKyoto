@@ -17,7 +17,7 @@ namespace UniSpeech.Sample
         {
             SpeechRecognizer.CallbackGameObjectName = gameObject.name;
             SpeechRecognizer.RequestRecognizerAuthorization();
-            ui.UpdateButton("Requesting authorization", false);
+            ui.UpdateButton("認証を待っています", false);
             audioManager = this.gameObject.GetComponent<AudioManager>();
         }
         /*
@@ -59,36 +59,39 @@ namespace UniSpeech.Sample
         public void OnError(string description)
         {
             ui.onClick = StartRecord;
-            ui.UpdateButton("Start", true);
+            ui.UpdateButton("開始", true);
+            ui.OnClick(); // 自動で音声認識を開始.
         }
 
         public void OnAuthorized()
         {
             ui.onClick = StartRecord;
-            ui.UpdateButton("Start", true);
+            ui.UpdateButton("開始", true);
+            ui.OnClick();
         }
 
         public void OnUnauthorized()
         {
-            ui.UpdateButton("Unauthorized", false);
+            ui.UpdateButton("認証に失敗しました", false);
         }
 
         public void OnAvailable()
         {
             ui.onClick = StartRecord;
-            ui.UpdateButton("Start", true);
+            ui.UpdateButton("開始", true);
+            ui.OnClick();
         }
 
         public void OnUnavailable()
         {
-            ui.UpdateButton("Not Available", false);
+            ui.UpdateButton("エラー", false);
         }
 
         private void StartRecord()
         {
             if (SpeechRecognizer.StartRecord())
             {
-                ui.UpdateButton("Stop", true);
+                ui.UpdateButton("停止", true);
                 ui.onClick = StopRecord;
             }
         }
@@ -97,7 +100,7 @@ namespace UniSpeech.Sample
         {
             if (SpeechRecognizer.StopRecord())
             {
-                ui.UpdateButton("Stopping", false);
+                ui.UpdateButton("停止中…", false);
             }
         }
     }
