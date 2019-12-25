@@ -31,7 +31,7 @@ namespace UniSpeech.Sample
             button.interactable = interactive;
         }
 
-        public void ShowButton(bool isActive)
+        public void SetButtonStatus(bool isActive)
         {
             button.gameObject.SetActive(isActive);
         }

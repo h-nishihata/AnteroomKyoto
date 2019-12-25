@@ -58,6 +58,7 @@ namespace UniSpeech.Sample
 
         public void OnError(string description)
         {
+            ui.SetButtonStatus(true);
             ui.onClick = StartRecord;
             ui.UpdateButton("開始", true);
             ui.OnClick(); // 自動で音声認識を開始.
@@ -65,6 +66,7 @@ namespace UniSpeech.Sample
 
         public void OnAuthorized()
         {
+            ui.SetButtonStatus(true);
             ui.onClick = StartRecord;
             ui.UpdateButton("開始", true);
             ui.OnClick();
@@ -72,11 +74,13 @@ namespace UniSpeech.Sample
 
         public void OnUnauthorized()
         {
+            ui.SetButtonStatus(true);
             ui.UpdateButton("認証に失敗しました", false);
         }
 
         public void OnAvailable()
         {
+            ui.SetButtonStatus(true);
             ui.onClick = StartRecord;
             ui.UpdateButton("開始", true);
             ui.OnClick();
@@ -84,6 +88,7 @@ namespace UniSpeech.Sample
 
         public void OnUnavailable()
         {
+            ui.SetButtonStatus(true);
             ui.UpdateButton("エラー", false);
         }
 
@@ -91,6 +96,7 @@ namespace UniSpeech.Sample
         {
             if (SpeechRecognizer.StartRecord())
             {
+                ui.SetButtonStatus(false);
                 ui.UpdateButton("停止", true);
                 ui.onClick = StopRecord;
             }
@@ -100,6 +106,7 @@ namespace UniSpeech.Sample
         {
             if (SpeechRecognizer.StopRecord())
             {
+                ui.SetButtonStatus(false);
                 ui.UpdateButton("停止中…", false);
             }
         }
