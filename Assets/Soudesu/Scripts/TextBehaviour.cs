@@ -5,6 +5,7 @@ public class TextBehaviour : MonoBehaviour
     private float elapsedTime;
     public float displayTimeOut = 1f;
 
+
     void OnEnable()
     {
         elapsedTime = 0f;

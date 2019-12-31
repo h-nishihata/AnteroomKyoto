@@ -6,13 +6,19 @@ public class AudioManager : MonoBehaviour
 {
     public AudioClip[] clips;
     public AudioSource source;
-    public Text soudesuText;
+    public Text soudesu;
+    public string[] soudesuPhrases;
 
 
     public void Play(int numClip)
     {
+        if (source.isPlaying)
+            return;
+
         source.clip = clips[numClip];
         source.Play();
-        soudesuText.gameObject.SetActive(true);
+
+        soudesu.text = soudesuPhrases[numClip];
+        soudesu.gameObject.SetActive(true);
     }
 }

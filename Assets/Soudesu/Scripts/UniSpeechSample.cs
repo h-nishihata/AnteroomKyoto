@@ -8,9 +8,10 @@ namespace UniSpeech.Sample
     {
         public UniSpeechSampleUI ui;
         private AudioManager audioManager;
-        //private bool hasDetectedUser;
-        //private float timeSinceLastInput;
-        //public float inputTimeOut = 0.5f; // ユーザの音声入力が途絶えてから「そうです」を再生するまでの時間.
+
+        private bool hasDetectedUser;
+        private float timeSinceLastInput;
+        public float inputTimeOut = 10f;
 
 
         void Start()
@@ -20,38 +21,38 @@ namespace UniSpeech.Sample
             ui.UpdateButton("認証を待っています", false);
             audioManager = this.gameObject.GetComponent<AudioManager>();
         }
-        /*
+
         void Update()
         {
             if (!hasDetectedUser)
                 return;
-
+                
             if (timeSinceLastInput < inputTimeOut)
             {
                 timeSinceLastInput += Time.deltaTime;
             }
             else
             {
-                // timeSinceLastInputが一定時間を過ぎると「そうです」が再生される.
-                audioManager.Play(Random.Range(0, 0));
-                hasDetectedUser = false;
+                hasDetectedUser = false; 
+                ui.UpdateText("何か語りかけてみてください");
             }
         }
-        */
+
 
         /// <summary>
         /// マイクから何かしらの入力がある度にこのメソッドが呼ばれる.
         /// </summary>
+        /// <param name="transcription">Startボタンを押してからの累計のメッセージが入る.</param>
         public void OnRecognized(string transcription)
         {
-            // transcriptionにはStartボタンを押してからの累計のメッセージが入る.
-            // Debug.Log("OnRecognized: " + transcription);
+            //Debug.Log("OnRecognized: " + transcription);
 
-            // フィードバックループ回避.
+            // フィードバック回避.
             if ((transcription.Length > 4) && (transcription.Substring(transcription.Length - 4) == "そうです"))
                 return;
-            //hasDetectedUser = true;
-            //timeSinceLastInput = 0;
+
+            hasDetectedUser = true;
+            timeSinceLastInput = 0;
             ui.UpdateText(transcription);
             audioManager.Play(Random.Range(0, audioManager.clips.Length));
         }
