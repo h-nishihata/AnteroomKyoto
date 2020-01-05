@@ -13,6 +13,8 @@ namespace UniSpeech.Sample
         private float timeSinceLastInput;
         public float inputTimeOut = 10f;
 
+        private string prevTranscription = "prevTranscription";
+
 
         void Start()
         {
@@ -51,10 +53,16 @@ namespace UniSpeech.Sample
             if ((transcription.Length > 4) && (transcription.Substring(transcription.Length - 4) == "そうです"))
                 return;
 
+            // 停止ボタン押下直後になぜか呼ばれてしまう現象回避.
+            if (transcription == prevTranscription)
+                return;
+
             hasDetectedUser = true;
             timeSinceLastInput = 0;
             ui.UpdateText(transcription);
             audioManager.Play(Random.Range(0, audioManager.clips.Length));
+
+            prevTranscription = transcription;
         }
 
         public void OnError(string description)
