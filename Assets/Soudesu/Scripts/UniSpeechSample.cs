@@ -20,7 +20,6 @@ namespace UniSpeech.Sample
             audioManager = this.gameObject.GetComponent<AudioManager>();
         }
 
-
         /// <summary>
         /// マイクから何かしらの入力がある度にこのメソッドが呼ばれる.
         /// </summary>
@@ -76,7 +75,7 @@ namespace UniSpeech.Sample
         {
             if (SpeechRecognizer.StartRecord())
             {
-                ui.UpdateButton("停止", true);
+                ui.UpdateButton("リセット", true);
                 ui.onClick = StopRecord;
             }
         }
@@ -85,7 +84,7 @@ namespace UniSpeech.Sample
         {
             if (SpeechRecognizer.StopRecord())
             {
-                ui.UpdateButton("停止中…", false);
+                ui.UpdateButton("リセットしています…", false);
             }
         }
     }

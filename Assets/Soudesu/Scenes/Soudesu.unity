@@ -460,7 +460,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ui: {fileID: 1492859214}
-  inputTimeOut: 10
 --- !u!4 &734083787
 Transform:
   m_ObjectHideFlags: 0
@@ -586,6 +585,12 @@ MonoBehaviour:
   clips:
   - {fileID: 8300000, guid: 3d37c89485f54472da8beac6e95a4977, type: 3}
   - {fileID: 8300000, guid: 081c071080a32439f9d98ec274b18a47, type: 3}
+  - {fileID: 8300000, guid: ca1099aaa6a2b48bc9c01b31f8479e8f, type: 3}
+  - {fileID: 8300000, guid: cb47ffa54b5564e2e9a7da253ac6055f, type: 3}
+  - {fileID: 8300000, guid: 8c2d5bc7afad04fb8aa477c5d4936c14, type: 3}
+  - {fileID: 8300000, guid: 51b74b3a3755d41bc9eaa03ab7f51648, type: 3}
+  - {fileID: 8300000, guid: 0f308ae72295b4afea299f572c5cf8ed, type: 3}
+  - {fileID: 8300000, guid: 74f95129595ac4fc4b2b2a846dd3e8a2, type: 3}
   source: {fileID: 734083788}
   soudesu: {fileID: 1967370484}
 --- !u!1 &818223879
