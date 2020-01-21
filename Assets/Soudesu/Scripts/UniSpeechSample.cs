@@ -35,6 +35,8 @@ namespace UniSpeech.Sample
 
             // Debug.Log("OnRecognized: " + transcription);
             ui.UpdateText(transcription); // 喋った内容を画面に表示する.
+            if (ui.onClick == StartRecord)
+                transcription = "";
             prevTranscription = transcription;
 
             audioManager.Play(Random.Range(0, audioManager.clips.Length));
@@ -85,6 +87,7 @@ namespace UniSpeech.Sample
             if (SpeechRecognizer.StopRecord())
             {
                 ui.UpdateButton("リセットしています…", false);
+                ui.UpdateText("");
             }
         }
     }
