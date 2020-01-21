@@ -7,7 +7,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] clips;
     public AudioSource source;
     public Text soudesu;
-    public string[] soudesuPhrases;
 
 
     public void Play(int numClip)
@@ -18,7 +17,6 @@ public class AudioManager : MonoBehaviour
         source.clip = clips[numClip];
         source.Play();
 
-        soudesu.text = soudesuPhrases[numClip];
         soudesu.gameObject.SetActive(true);
     }
 }

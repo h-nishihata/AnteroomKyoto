@@ -30,11 +30,6 @@ namespace UniSpeech.Sample
             buttonText.text = text;
             button.interactable = interactive;
         }
-
-        public void SetButtonStatus(bool isActive)
-        {
-            button.gameObject.SetActive(isActive);
-        }
     }
 }
 
