@@ -2,9 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UniSpeech.Sample
+namespace UniSpeech.Soudesu
 {
-    public class UniSpeechSampleUI : MonoBehaviour
+    public class UIController : MonoBehaviour
     {
         public Text text;
         public Button button;
@@ -32,4 +32,3 @@ namespace UniSpeech.Sample
         }
     }
 }
-

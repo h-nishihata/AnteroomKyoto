@@ -2,11 +2,11 @@
 // https://github.com/noir-neo/UniSpeech
 using UnityEngine;
 
-namespace UniSpeech.Sample
+namespace UniSpeech.Soudesu
 {
-    public class UniSpeechSample : MonoBehaviour, ISpeechRecognizer
+    public class DictationManager : MonoBehaviour, ISpeechRecognizer
     {
-        public UniSpeechSampleUI ui;
+        public UIController ui;
         private AudioManager audioManager;
 
         private string prevTranscription = "prevTranscription";
@@ -92,4 +92,3 @@ namespace UniSpeech.Sample
         }
     }
 }
-

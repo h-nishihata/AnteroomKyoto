@@ -17,6 +17,6 @@ public class AudioManager : MonoBehaviour
         source.clip = clips[numClip];
         source.Play();
 
-        soudesu.gameObject.SetActive(true);
+        //soudesu.gameObject.SetActive(true);
     }
 }
