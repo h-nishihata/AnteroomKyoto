@@ -39,7 +39,7 @@ namespace UniSpeech.Soudesu
                 transcription = "";
             prevTranscription = transcription;
 
-            audioManager.Play(Random.Range(0, audioManager.clips.Length));
+            audioManager.Play();
         }
 
         public void OnError(string description)
