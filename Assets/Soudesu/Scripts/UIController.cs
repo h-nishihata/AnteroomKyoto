@@ -28,7 +28,7 @@ namespace UniSpeech.Soudesu
         public void UpdateButton(string text, bool interactive)
         {
             buttonText.text = text;
-            button.interactable = interactive;
+            //button.interactable = interactive;
         }
     }
 }

@@ -1,5 +1,7 @@
 # Soudesu
   
+<img src="https://raw.githubusercontent.com/h-nishihata/Soudesu/master/InstallationView.jpg" width="256">  
+  
 - そうなんです．
 
 ## 注意
