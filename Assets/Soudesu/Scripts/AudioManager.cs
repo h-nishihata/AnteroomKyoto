@@ -11,13 +11,13 @@ public class AudioManager : MonoBehaviour
 
     public void Play()
     {
+        if (source.isPlaying)
+            return;
+
         if (Random.Range(0, 100) >= 1)
             numClip = Random.Range(0, this.clips.Length - 1);
         else
             numClip = this.clips.Length - 1; // 一番長い19番をシークレットに設定.
-
-        if (source.isPlaying)
-            return;
 
         source.clip = clips[numClip];
         source.Play();

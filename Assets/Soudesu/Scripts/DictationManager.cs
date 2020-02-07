@@ -11,7 +11,6 @@ namespace UniSpeech.Soudesu
 
         private string prevTranscription = "prevTranscription";
 
-
         void Start()
         {
             SpeechRecognizer.CallbackGameObjectName = gameObject.name;
@@ -27,16 +26,20 @@ namespace UniSpeech.Soudesu
         public void OnRecognized(string transcription)
         {
             // フィードバック回避.
-            if ((transcription.Length > 4) && (transcription.Substring(transcription.Length - 4) == "そうです"))
-                return;
+            if (transcription.Length > 4)
+            {
+                if((transcription.Substring(transcription.Length - 4) == "そうです") ||
+                   (transcription.Substring(transcription.Length - 4) == "ですです") ||
+                   (transcription.Substring(transcription.Length - 2) == "です"))
+                    return;
+            }
+                
             // 停止ボタン押下直後になぜか呼ばれてしまう現象回避.
             if (transcription == prevTranscription)
                 return;
 
             // Debug.Log("OnRecognized: " + transcription);
             ui.UpdateText(transcription); // 喋った内容を画面に表示する.
-            if (ui.onClick == StartRecord)
-                transcription = "";
             prevTranscription = transcription;
 
             audioManager.Play();
