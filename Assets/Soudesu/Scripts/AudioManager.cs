@@ -12,6 +12,10 @@ public class AudioManager : MonoBehaviour
     private float waitCount;
     private float waitDuration = 2f;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 47db98d7f9dcc49006ebbd8551555ca200c8e7e7
     private void Update()
     {
         if (isWaiting)
@@ -30,7 +34,10 @@ public class AudioManager : MonoBehaviour
 
     public void Play()
     {
+<<<<<<< HEAD
+=======
         //if (source.isPlaying)
+>>>>>>> 47db98d7f9dcc49006ebbd8551555ca200c8e7e7
         if (isWaiting)
             return;
 
