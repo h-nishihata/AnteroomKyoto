@@ -12,6 +12,7 @@ namespace UniSpeech.Soudesu
 
         public Action onClick = () => { };
 
+
         public void OnClick()
         {
             onClick();

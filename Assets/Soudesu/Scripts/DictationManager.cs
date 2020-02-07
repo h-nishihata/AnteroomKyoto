@@ -8,8 +8,8 @@ namespace UniSpeech.Soudesu
     {
         public UIController ui;
         private AudioManager audioManager;
-
         private string prevTranscription = "prevTranscription";
+
 
         void Start()
         {
