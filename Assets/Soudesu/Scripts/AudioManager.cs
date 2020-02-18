@@ -10,14 +10,12 @@ public class AudioManager : MonoBehaviour
     //public Text soudesu;
     private bool isWaiting;
     private float waitCount;
-    private float waitDuration = 2f;
+    private float waitDuration = 0.5f;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 47db98d7f9dcc49006ebbd8551555ca200c8e7e7
     private void Update()
     {
+        // フィードバック回避のために入れたつもり.
         if (isWaiting)
         {
             if (waitCount < source.clip.length + waitDuration)
@@ -34,10 +32,6 @@ public class AudioManager : MonoBehaviour
 
     public void Play()
     {
-<<<<<<< HEAD
-=======
-        //if (source.isPlaying)
->>>>>>> 47db98d7f9dcc49006ebbd8551555ca200c8e7e7
         if (isWaiting)
             return;
 

@@ -460,6 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ui: {fileID: 1492859214}
+  timeToReload: 60
 --- !u!4 &734083787
 Transform:
   m_ObjectHideFlags: 0

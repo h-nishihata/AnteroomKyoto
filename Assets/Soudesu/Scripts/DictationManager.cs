@@ -1,6 +1,8 @@
 ﻿// https://qiita.com/noir_neo/items/e51f2b503883d9b26c07
 // https://github.com/noir-neo/UniSpeech
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 namespace UniSpeech.Soudesu
 {
@@ -10,6 +12,10 @@ namespace UniSpeech.Soudesu
         private AudioManager audioManager;
         private string prevTranscription = "prevTranscription";
 
+        private Scene scene;
+        private float timeSinceLastInput;
+        public float timeToReload = 60f;
+
 
         void Start()
         {
@@ -17,6 +23,20 @@ namespace UniSpeech.Soudesu
             SpeechRecognizer.RequestRecognizerAuthorization();
             ui.UpdateButton("認証を待っています", false);
             audioManager = this.gameObject.GetComponent<AudioManager>();
+            scene = SceneManager.GetActiveScene();
+        }
+
+        private void Update()
+        {
+            if (timeSinceLastInput < timeToReload)
+            {
+                timeSinceLastInput += Time.deltaTime;
+            }
+            else if ((timeSinceLastInput >= timeToReload) || (Input.GetKeyDown(KeyCode.R)))
+            {
+                this.ReloadScene();
+                timeSinceLastInput = 0;
+            }
         }
 
         /// <summary>
@@ -37,6 +57,8 @@ namespace UniSpeech.Soudesu
             // 停止ボタン押下直後になぜか呼ばれてしまう現象回避.
             if (transcription == prevTranscription)
                 return;
+
+            timeSinceLastInput = 0;
 
             // Debug.Log("OnRecognized: " + transcription);
             ui.UpdateText(transcription); // 喋った内容を画面に表示する.
@@ -92,6 +114,12 @@ namespace UniSpeech.Soudesu
                 ui.UpdateButton("リセットしています…", false);
                 ui.UpdateText("");
             }
+        }
+
+        private void ReloadScene()
+        {
+            //Debug.Log("Reload");
+            SceneManager.LoadScene(scene.name);
         }
     }
 }
