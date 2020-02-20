@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource source; 
     public AudioClip[] clips;
     private int numClip;
-    //public Text soudesu;
+
     private bool isWaiting;
     private float waitCount;
     private float waitDuration = 0.5f;
@@ -33,7 +33,10 @@ public class AudioManager : MonoBehaviour
     public void Play()
     {
         if (isWaiting)
+        {
+            //Debug.Log("isWaiting");
             return;
+        }
 
         if (Random.Range(0, 100) >= 1)
             numClip = Random.Range(0, this.clips.Length - 1);
@@ -42,7 +45,6 @@ public class AudioManager : MonoBehaviour
 
         source.clip = clips[numClip];
         source.Play();
-        //soudesu.gameObject.SetActive(true);
         isWaiting = true;
     }
 }

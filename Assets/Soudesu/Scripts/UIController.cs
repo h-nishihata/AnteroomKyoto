@@ -17,19 +17,21 @@ namespace UniSpeech.Soudesu
         {
             onClick();
         }
-
+         
+        /// <summary>
+        /// 喋った内容を画面に表示する.
+        /// </summary>
         public void UpdateText(string text)
         {
             this.text.text = text;
         }
 
         /// <summary>
-        /// 状態を表示する.
+        /// ボタンに状態を表示する.
         /// </summary>
-        public void UpdateButton(string text, bool interactive)
+        public void UpdateButton(string text)
         {
             buttonText.text = text;
-            //button.interactable = interactive;
         }
     }
 }

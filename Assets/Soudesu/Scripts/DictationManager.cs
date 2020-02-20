@@ -21,21 +21,23 @@ namespace UniSpeech.Soudesu
         {
             SpeechRecognizer.CallbackGameObjectName = gameObject.name;
             SpeechRecognizer.RequestRecognizerAuthorization();
-            ui.UpdateButton("認証を待っています", false);
+            //ui.UpdateButton("認証を待っています");
+
             audioManager = this.gameObject.GetComponent<AudioManager>();
             scene = SceneManager.GetActiveScene();
         }
 
         private void Update()
         {
+            // 一定時間経過後に入力を認識しなくなる問題があるため，定期的にシーンをリロードしてみる.
             if (timeSinceLastInput < timeToReload)
             {
                 timeSinceLastInput += Time.deltaTime;
             }
-            else if ((timeSinceLastInput >= timeToReload) || (Input.GetKeyDown(KeyCode.R)))
+            else if (timeSinceLastInput >= timeToReload)
             {
-                this.ReloadScene();
                 timeSinceLastInput = 0;
+                this.ReloadScene();
             }
         }
 
@@ -45,6 +47,12 @@ namespace UniSpeech.Soudesu
         /// <param name="transcription">Startボタンを押してからの累計のメッセージが入る.</param>
         public void OnRecognized(string transcription)
         {
+            if (audioManager.source.isPlaying)
+            {
+                //Debug.Log("isPlaying");
+                return;
+            }
+
             // フィードバック回避.
             if (transcription.Length > 4)
             {
@@ -61,7 +69,7 @@ namespace UniSpeech.Soudesu
             timeSinceLastInput = 0;
 
             // Debug.Log("OnRecognized: " + transcription);
-            ui.UpdateText(transcription); // 喋った内容を画面に表示する.
+            // ui.UpdateText(transcription);
             prevTranscription = transcription;
 
             audioManager.Play();
@@ -70,39 +78,39 @@ namespace UniSpeech.Soudesu
         public void OnError(string description)
         {
             ui.onClick = StartRecord;
-            ui.UpdateButton("開始", true);
-            ui.OnClick(); // 自動で音声認識を開始.
+            //ui.UpdateButton("開始");
+            ui.OnClick(); // 自動で音声認識を再開.
         }
 
         public void OnAuthorized()
         {
             ui.onClick = StartRecord;
-            ui.UpdateButton("開始", true);
+            //ui.UpdateButton("開始");
             ui.OnClick();
         }
 
         public void OnUnauthorized()
         {
-            ui.UpdateButton("認証に失敗しました", false);
+            //ui.UpdateButton("認証に失敗しました");
         }
 
         public void OnAvailable()
         {
             ui.onClick = StartRecord;
-            ui.UpdateButton("開始", true);
+            //ui.UpdateButton("開始");
             ui.OnClick();
         }
 
         public void OnUnavailable()
         {
-            ui.UpdateButton("エラー", false);
+            //ui.UpdateButton("エラー");
         }
 
         private void StartRecord()
         {
             if (SpeechRecognizer.StartRecord())
             {
-                ui.UpdateButton("リセット", true);
+                //ui.UpdateButton("リセット");
                 ui.onClick = StopRecord;
             }
         }
@@ -111,8 +119,7 @@ namespace UniSpeech.Soudesu
         {
             if (SpeechRecognizer.StopRecord())
             {
-                ui.UpdateButton("リセットしています…", false);
-                ui.UpdateText("");
+                //ui.UpdateButton("リセットしています…");
             }
         }
 
